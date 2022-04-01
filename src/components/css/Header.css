@@ -1,43 +1,43 @@
 #headerContainer {
-    padding-bottom: 6px;
+  padding-bottom: 6px;
 }
 
 #topAppBar {
-    height: 44px;
-    background-color: #FFFFFF;
+  height: 44px;
+  background-color: #ffffff;
 }
 
 #bottomAppBar {
-    height: 44px;
-    background-color: #D8D8D8;
+  height: 44px;
+  background-color: #d8d8d8;
 }
 
 #topToolBar,
 #bottomToolBar {
-    min-height: 44px;
+  min-height: 44px;
 }
 
 #topToolBar {
-    padding: 0px 10px;
+  padding: 0px 10px;
 }
 
 #bottomToolBar {
-    padding: 0px 12px;
-    justify-content: space-between;
+  padding: 0px 10px;
+  justify-content: space-between;
 }
 
 #bottomToolBarTitle {
-    color: #404040;
-    letter-spacing: 1px;
+  color: #404040;
+  letter-spacing: 1px;
 }
 
 #createBookingBtnHeader {
-    background: #F29648;
-    color: #404040;
-    text-transform: none;
-    padding: 3px 11px;
-    font-weight: 500;
-    font-size: 14px;
+  background: #f29648;
+  color: #404040;
+  text-transform: none;
+  padding: 3px 11px;
+  font-weight: 500;
+  font-size: 14px;
 }
 
 #createBookingBtnForm {
