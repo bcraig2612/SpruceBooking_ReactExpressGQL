@@ -17,7 +17,9 @@ import TextField from "@mui/material/TextField";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { ReactComponent as SpruceLogo } from "../assets/spruce-logo.svg";
+import { CREATE_BOOKING } from "../hooks/useCreateBooking";
 import "./css/Header.css";
+import { useMutation } from "@apollo/client";
 
 const style = {
   position: "absolute",
@@ -32,6 +34,7 @@ const style = {
 };
 
 export default function TopAppBar() {
+  const [createBooking, { data, loading, error }] = useMutation(CREATE_BOOKING);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -44,6 +47,24 @@ export default function TopAppBar() {
   const [bookingType, setBookingType] = useState("");
   const [bookingDate, setBookingDate] = useState("");
   const [bookingTime, setBookingTime] = useState("");
+
+  const handleSubmit = () => {
+    let validAddress = streetAddress.concat("/n", city).concat(", ", state).concat(" ", zipCode);
+    createBooking({
+      variables: {
+        input: {
+          type: bookingType,
+          name: customerName,
+          email: emailAddress,
+          address: validAddress,
+          serviceDate: bookingDate,
+        },
+      },
+    }).then(() => {
+      handleClose()
+    });
+  };
+
   return (
     <>
       <Box id="headerContainer">
@@ -119,7 +140,7 @@ export default function TopAppBar() {
                                 {" "}
                                 Housekeeping{" "}
                               </MenuItem>
-                              <MenuItem value={"Dog Walk"}>Dog Walk</MenuItem>
+                              <MenuItem value={"DogWalk"}>DogWalk</MenuItem>
                             </Select>
                           </FormControl>
                         </Grid>
@@ -261,7 +282,23 @@ export default function TopAppBar() {
                     <CardActions
                       sx={{ padding: "8px 16px", justifyContent: "end" }}
                     >
-                      <Button id="createBookingBtnForm">Create Booking</Button>
+                      <Button
+                        id="createBookingBtnForm"
+                        disabled={
+                          !customerName ||
+                          !emailAddress ||
+                          !streetAddress ||
+                          !city ||
+                          !state ||
+                          !zipCode ||
+                          !bookingType ||
+                          !bookingDate ||
+                          !bookingTime
+                        }
+                        onClick={() => handleSubmit()}
+                      >
+                        Create Booking
+                      </Button>
                     </CardActions>
                   </Box>
                 </Card>

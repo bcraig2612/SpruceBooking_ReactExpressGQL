@@ -89,8 +89,8 @@ export default function BookingsTable() {
                 <StyledTableRow key={booking.id}>
                   <StyledTableCell>{booking.name}</StyledTableCell>
                   <StyledTableCell>{booking.email}</StyledTableCell>
-                  <StyledTableCell>{booking.address}</StyledTableCell>
-                  <StyledTableCell>{booking.type}</StyledTableCell>
+                  <StyledTableCell>{booking.address.slice(0,booking.address.indexOf(',',booking.address.indexOf(',')+1))}</StyledTableCell>
+                  <StyledTableCell>{booking.type.replace(/([A-Z])/g, ' $1').trim()}</StyledTableCell>
                   <StyledTableCell>{booking.serviceDate}</StyledTableCell>
                 </StyledTableRow>
               ))}
