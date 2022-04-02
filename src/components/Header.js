@@ -49,7 +49,7 @@ export default function TopAppBar() {
   const [bookingTime, setBookingTime] = useState("");
 
   const handleSubmit = () => {
-    let validAddress = streetAddress.concat("/n", city).concat(", ", state).concat(" ", zipCode);
+    let validAddress = streetAddress.concat("\n", city).concat(", ", state).concat(" ", zipCode);
     createBooking({
       variables: {
         input: {
