@@ -50,6 +50,7 @@ export default function TopAppBar() {
 
   const handleSubmit = () => {
     let validAddress = streetAddress.concat("\n", city).concat(", ", state).concat(" ", zipCode);
+    let validDateTime = bookingDate.concat(" ", bookingTime);
     createBooking({
       variables: {
         input: {
@@ -57,7 +58,7 @@ export default function TopAppBar() {
           name: customerName,
           email: emailAddress,
           address: validAddress,
-          serviceDate: bookingDate,
+          serviceDate: validDateTime,
         },
       },
     }).then(() => {
